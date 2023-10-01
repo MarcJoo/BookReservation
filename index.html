@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Book Viewer</title>
+</head>
+<body>
+    <header>
+        <h1>Book Viewer</h1>
+    </header>
+    <div class="container">
+        <h2>Available Books</h2>
+        <div class="columns">
+            {% for book in books %}
+                <div class="column">
+                    <h3>{{ book.title }}</h3>
+                    <p>Author: {{ book.author }}</p>
+                    <p>Available: {{ book.available }} copies</p>
+                    <form action="/reserve" method="POST">
+                        <input type="hidden" name="book_id" value="{{ book.id }}">
+                        <label for="name">Your Name:</label>
+                        <input type="text" id="name" name="name" required><br><br>
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" max="{{ book.available }}" required>
+                        <button type="submit">Reserve</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="centered-text">
+        <a class="reservations-link" href="/reservations">View Reservations</a>
+    </div>
+</body>
+</html>
+

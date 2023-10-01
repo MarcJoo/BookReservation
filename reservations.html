@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Reservations</title>
+     <style>
+        /* CSS styles for centering and styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            margin: 20px auto; /* Center the container horizontally */
+            max-width: 600px; /* Limit the width for readability */
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: white;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: block;
+            width: fit-content;
+            margin: 20px auto; /* Center the link horizontally */
+        }
+
+        a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Reservations</h1>
+    </header>
+    <div class="container">
+        <h2>List of Reservations</h2>
+        <ul>
+            {% for reservation in reservations %}
+                <li>
+                    <p>Book ID: {{ reservation.book_id }}</p>
+                    <p>Quantity: {{ reservation.quantity }}</p>
+                    <p>Your Name: {{ reservation.name }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p><a href="/">Back to Book Viewer</a></p>
+</body>
+</html>
